@@ -3,7 +3,13 @@ import {
   Moon,
   SunMedium,
   Laptop,
-  Twitter,
+  PlusCircle,
+  Menu,
+  UploadCloud,
+  CircleCheck,
+  CircleX,
+  User,
+  LogOut,
   // type Icon as LucideIcon,
 } from "lucide-react"
 
@@ -13,7 +19,13 @@ export const Icons = {
   sun: SunMedium,
   moon: Moon,
   laptop: Laptop,
-  twitter: Twitter,
+  plus: PlusCircle,
+  menu: Menu,
+  upload: UploadCloud,
+  check: CircleCheck,
+  error: CircleX,
+  user: User,
+  logout: LogOut,
   logo: (props: LucideProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
       <path
@@ -34,7 +46,7 @@ export const Icons = {
     <svg xmlns="http://www.w3.org/2000/svg" width="2500" height="2305" preserveAspectRatio="xMinYMin meet" viewBox="0 0 256 236" id="gitlab" {...props}><path fill="#E24329" d="M128.075 236.075l47.104-144.97H80.97l47.104 144.97z"></path><path fill="#FC6D26" d="M128.075 236.074L80.97 91.104H14.956l113.119 144.97z"></path><path fill="#FCA326" d="M14.956 91.104L.642 135.16a9.752 9.752 0 0 0 3.542 10.903l123.891 90.012-113.12-144.97z"></path><path fill="#E24329" d="M14.956 91.105H80.97L52.601 3.79c-1.46-4.493-7.816-4.492-9.275 0l-28.37 87.315z"></path><path fill="#FC6D26" d="M128.075 236.074l47.104-144.97h66.015l-113.12 144.97z"></path><path fill="#FCA326" d="M241.194 91.104l14.314 44.056a9.752 9.752 0 0 1-3.543 10.903l-123.89 90.012 113.119-144.97z"></path><path fill="#E24329" d="M241.194 91.105h-66.015l28.37-87.315c1.46-4.493 7.816-4.492 9.275 0l28.37 87.315z"></path></svg>
   ),
   google: (props: LucideProps) => (
-    <svg {...props} stroke="currentColor" fill="currentColor" stroke-width="0" version="1.1" x="0px" y="0px" viewBox="0 0 48 48" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12
+    <svg {...props} stroke="currentColor" fill="currentColor" strokeWidth="0" version="1.1" x="0px" y="0px" viewBox="0 0 48 48" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12
 	c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24
 	c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"></path><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657
 	C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"></path><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36

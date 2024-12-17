@@ -1,9 +1,11 @@
-import { RegisterForm } from "../components/register-form"
+import { LoginForm } from "@/module/user/components/login-form";
 
-export default function SignupPage() {
+export default function LoginPage() {
   return (
-    <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
-      <RegisterForm />
-    </section>
+    <div className="flex justify-center items-center">
+      <div className="sm:w-[400px]">
+        <LoginForm />
+      </div>
+    </div>
   )
 }
