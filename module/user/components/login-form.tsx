@@ -3,7 +3,7 @@
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { useState, useTransition } from "react";
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 
@@ -25,11 +25,11 @@ import { cn } from "@/lib/utils";
 // import { login } from "@/actions/login";
 
 export const LoginForm = () => {
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
   // const callbackUrl = searchParams.get("callbackUrl");
-  const urlError = searchParams.get("error") === "OAuthAccountNotLinked"
-    ? "Email already in use with different provider!"
-    : "";
+  // const urlError = searchParams.get("error") === "OAuthAccountNotLinked"
+  //   ? "Email already in use with different provider!"
+  //   : "";
 
   const [showTwoFactor, setShowTwoFactor] = useState(false);
   const [error, setError] = useState<string | undefined>("");
@@ -157,7 +157,7 @@ export const LoginForm = () => {
             </>
           )}
           </div>
-          <FormError message={error || urlError} />
+          <FormError message={error} />
           <FormSuccess message={success} />
           <Button
             disabled={isPending}
