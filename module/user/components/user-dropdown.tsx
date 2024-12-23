@@ -26,8 +26,11 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 import { useTheme } from "next-themes"
+import { useRouter } from "next/navigation"
 import { Icons } from "@/components/icons"
 import { UserDto } from "../dto/user.dto"
+import { logout } from "../services"
+import { useCurrentUser } from "../hooks/use-current-user"
 
 export function UserDropdownMenuContent({
   user,
@@ -37,6 +40,9 @@ export function UserDropdownMenuContent({
   side?: "bottom" | "right"
 }) {
   const { setTheme, theme, resolvedTheme } = useTheme()
+  const router = useRouter();
+  const { setUser } = useCurrentUser();
+
   return (
     <DropdownMenuContent
       className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
@@ -101,7 +107,11 @@ export function UserDropdownMenuContent({
         </DropdownMenuItem>
       </DropdownMenuGroup>
       <DropdownMenuSeparator />
-      <DropdownMenuItem>
+      <DropdownMenuItem onClick={() => {
+        logout();
+        setUser(null);
+        router.push("/");
+      }}>
         <LogOut />
         Log out
       </DropdownMenuItem>

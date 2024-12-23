@@ -2,7 +2,7 @@
 
 import * as z from "zod";
 import { useForm } from "react-hook-form";
-import { useState, useTransition } from "react";
+import { useState } from "react";
 // import { useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
@@ -22,19 +22,19 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { FormError } from "@/components/form/form-error";
 import { FormSuccess } from "@/components/form/form-success";
 import { cn } from "@/lib/utils";
-// import { login } from "@/actions/login";
+import { login, setUserToLocal } from "../services";
+import { HTTPError } from "@/lib/exception";
+import { useRouter } from "next/navigation";
+import { useCurrentUser } from "../hooks/use-current-user";
 
-export const LoginForm = () => {
-  // const searchParams = useSearchParams();
-  // const callbackUrl = searchParams.get("callbackUrl");
-  // const urlError = searchParams.get("error") === "OAuthAccountNotLinked"
-  //   ? "Email already in use with different provider!"
-  //   : "";
-
-  const [showTwoFactor, setShowTwoFactor] = useState(false);
+export const LoginForm = ({ redirect } : { redirect: string }) => {
+  const router = useRouter();
+  const [showTwoFactor] = useState(false);
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
-  const [isPending, startTransition] = useTransition();
+  const [isPending, setIsPending] = useState(false);
+  const { setUser } = useCurrentUser();
+  // const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -47,10 +47,22 @@ export const LoginForm = () => {
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     setError("");
     setSuccess("");
+    setIsPending(true);
     console.log("values", values);
-    setShowTwoFactor(true);
+    login(values).then((data) => {
+      console.log("login data", data);
+      // setShowTwoFactor(true);
+      setUserToLocal(data);
+      setIsPending(false);
+      setUser(data);
+      router.push(redirect);
+    }).catch((error: HTTPError) => {
+      console.error("login error", error);
+      setError(error.message);
+      setIsPending(false);
+    });
     
-    startTransition(() => {
+    // startTransition(() => {
       // login(values, callbackUrl)
       //   .then((data) => {
       //     if (data?.error) {
@@ -68,7 +80,7 @@ export const LoginForm = () => {
       //     }
       //   })
       //   .catch(() => setError("Something went wrong"));
-    });
+    // });
   };
 
   return (
@@ -161,6 +173,7 @@ export const LoginForm = () => {
           <FormSuccess message={success} />
           <Button
             disabled={isPending}
+            loading={isPending}
             type="submit"
             className="w-full"
           >
