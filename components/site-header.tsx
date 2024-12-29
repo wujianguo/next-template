@@ -26,16 +26,10 @@ export function SiteHeader() {
               href={siteConfig.links.github}
               target="_blank"
               rel="noreferrer"
+              className={buttonVariants({ variant: "ghost", size: "icon" })}
             >
-              <div
-                className={buttonVariants({
-                  size: "icon",
-                  variant: "ghost",
-                })}
-              >
-                <Icons.gitHub className="size-6" />
-                <span className="sr-only">GitHub</span>
-              </div>
+              <Icons.gitHub className="size-6" />
+              <span className="sr-only">GitHub</span>  
             </Link>
             {/* <ThemeToggle /> */}
             <UserButton />
